@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 *{
     margin: 0;
@@ -72,10 +76,6 @@
 
 .company_history_img_item {
     width: 100%;
-    position: absolute;
-    left: 0;
-    /* right: 13px; */
-    top: 409px;
 }
 .company_history_img_item img {
     width: 100%;
@@ -86,7 +86,6 @@
 .cars_models {
     width: 100%;
     margin-bottom: 60px;
-    padding-top: 750px;
 }
 .cars_models_wrapper {
     max-width: 1440px;
@@ -203,7 +202,7 @@
 /*car_models_details*/
 .car_models_details {
     width: 100%;
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
 }
 .car_models_details_wrapper {
     width: 100%;
@@ -246,12 +245,415 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 .company_news_item {
     width: 32%;
     background: #ececec;
     border: 1px solid #dd2b1c;
-    padding: 15px;
+    padding: 15px 15px 30px 15px;
     border-radius: 20px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+.company_news_item_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.company_news_item_img {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.company_news_item_date_info {
+    margin-bottom: 15px;
+    color: #333333;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 15px;
+}
+
+.company_news_item_title {
+    margin-bottom: 10px;
+    color: #333333;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 15px;
+}
+.company_news_item_info {
+    color: #333333;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 15px;
+}
+
+.company_news_item_more_button {
+    background: #ffffff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    margin: 0 auto;
+    padding: 6px 5px;
+}
+
+.company_news_item_more_button_text {
+    color: #333333;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 3px;
+}
+.company_news_item_more_button img {
+    width: 12px;
+    height: 12px;
+}
+
+.company_news_item_img_info_box {
+    width: 100%;
+}
+
+.load_more_news_button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.load_more_news_button_text {
+    color: #dd2b1c;
+    font-weight: 500;
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 10px;
+}
+
+/*how_to_become_dealer*/
+.how_to_become_dealer {
+    width: 100%;
+    margin-bottom: 60px;
+}
+.how_to_become_dealer_wrapper {
+    width: 100%;
+}
+.how_to_become_dealer_img {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    height: 600px;
+}
+.how_to_become_dealer_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.how_to_become_dealer_img-title {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    z-index: 999;
+    color: #000000;
+    font-weight: 700;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.how_to_become_dealer_info_wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+}
+
+.how_to_become_dealer_title {
+    color: #000000;
+    font-weight: 700;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+.how_to_become_dealer_info {
+    color: #333333;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 70px;
+}
+
+.how_to_become_dealer_items_wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.how_to_become_dealer_item {
+    width: 32%;
+    background: #f8f8fc;
+    padding: 20px 10px;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    flex-direction: column;
+    height: 275px;
+
+}
+
+.how_to_become_dealer_item_icon {
+    margin-bottom: 20px;
+}
+.how_to_become_dealer_item_title {
+    color: #000000;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.how_to_become_dealer_item_info {
+    color: #333333;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+/*partners*/
+.partners {
+    width: 100%;
+    background-image: url("../images/partners_img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 1300px;
+}
+.partners_wrapper {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 180px;
+}
+.partners_title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 45px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-bottom: 150px;
+}
+
+.partners_list_items_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.partners_list_item {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 28px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-bottom: 45px;
+    width: 24%;
+}
+
+/*top_slider*/
+
+.top_slider {
+    width: 100%;
+    margin-bottom: 60px;
+}
+.top_slider_wrapper {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.top_slider_box {
+    width: 60%;
+}
+.top_slider_item_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/*.top_slider_img_item  {*/
+/*    width: 60%;*/
+/*    height: 750px;*/
+
+/*}*/
+.top_slider_img_parent {
+    width: 100%;
+    height: 747px;
+}
+
+.top_slider_img_parent img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.top_slider_info_item {
+    width: 40%;
+    padding: 0 6px;
+    height: 750px;
+    position: relative;
+}
+
+.top_slider_info_item_child {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+    border-bottom: 1px solid #333333;
+    /*padding: 10px;*/
+}
+
+.top_slider_info_item_child_title {
+    color: #333333;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+.top_slider_info_item_child_detail {
+    color: #333333;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: end;
+    /*flex: 1;*/
+}
+
+
+.top_slider_info_item_line {
+    top: -24px;
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    background: #333333;
+    left: 52%;
+}
+
+.prev_next_btns_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 999;
+    bottom: 50%;
+}
+
+.prev {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 25px;
+}
+.next {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+}
+
+.top_slider_info_item_child_title_parent {
+    width: 60%;
+    padding: 10px;
+    border-right: 1px solid #333333;
+}
+.top_slider_info_item_child_detail_parent {
+    width: 40%;
+    padding: 10px;
+}
+
+
+/*popup*/
+
+.show_mpv_popup {
+    /*display: none;*/
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    /*right: -1000px;*/
+    /*transition: 0.5s;*/
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background:  rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    padding-top: 50px;
+}
+
+.show_mpv_popup_wrapper {
+     width: 90%;
+     background: #ffffff;
+     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 30px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.show_mpv_popup_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.show_mpv_popup_img {
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    border-bottom: 10px solid #dd2b1c;
+}
+
+.show_mpv_popup_close_btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+
 }

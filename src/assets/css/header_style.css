@@ -11,7 +11,7 @@
 
 .header {
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
 }
 .header_wrapper {
     max-width: 1440px;
@@ -106,25 +106,129 @@
     font-weight: 400;
 }
 
-.cars_models_item_title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
-    color: #000000;
-    font-weight: 700;
-    margin-bottom: 10px;
-    width: 100%;
-    border-bottom: 2px solid #000000;
-    padding-bottom: 10px;
-}
 
-.cars_models_item_info {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    color: #333333;
-    font-weight: 500;
-}
 
 
 .footer_item2 {
     width: 48%;
+}
+
+
+@media (max-width: 1460px) {
+    .header_wrapper {
+        max-width: unset!important;
+        width: 95% !important;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1070px) {
+    .headers_navigation_links_mail_address_info_wrapper {
+        max-width: 540px!important;
+    }
+    .headers_navigation_link {
+        font-size: 14px!important;
+        padding: 6px!important;
+    }
+    .headers_mail_address_info_item {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 851px) {
+    .header_hamburger_icon {
+        display: flex!important;
+    }
+    .headers_navigation_links_mail_address_info_wrapper {
+        display: none!important;
+    }
+    .mobile_headers_navigation_links_mail_address_info_wrapper {
+        width: 100%;
+    }
+
+    .headers_navigation_links_wrapper {
+        flex-direction: column;
+    }
+    .headers_navigation_link {
+        width: 100% !important;
+        margin-bottom: 6px!important;
+    }
+
+    .headers_mail_address_info_item_wrapper {
+        flex-direction: column;
+    }
+
+    .headers_mail_address_info_item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+.mobile_menu {
+    /*display: none;*/
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    /*right: -1000px;*/
+    /*transition: 0.5s;*/
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background:  rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+}
+.mobile_menu_wrapper {
+    height: 100%;
+    width: 320px;
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    top: 0;
+    padding-top: 80px;
+    padding-left: 15px;
+    overflow: scroll;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+}
+.mobile_menu_close_btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+
+.header_hamburger_icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    display: none;
+}
+
+.header_hamburger_icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+@media (max-width: 425px) {
+    .header_logo_link img {
+         width: 150px;
+    }
 }

@@ -14,12 +14,19 @@ export default function Header(props) {
     const [headerScroll, setHeaderScroll] = useState(false);
     const [show_mobile_menu, setShowMobileMenu] = useState(false);
     const [name, setName] = useState('');
+    const [name_error_text, setNameErrorText] = useState('');
+    const [name_error, setNameError] = useState(false);
+
     const [email, setEmail] = useState('');
+    const [email_error_text, setEmailErrorText] = useState('');
+    const [email_error, setEmailError] = useState(false);
+
     const [select_check1, setSelectCheck1] = useState('');
     const [select_check2, setSelectCheck2] = useState('');
 
 
     useEffect(() => {
+
         if ('scrollRestoration' in window.history) {
             window.history.scrollRestoration = 'manual';
         }
@@ -62,6 +69,69 @@ export default function Header(props) {
         setSelectCheck2(!select_check2);
 
     };
+
+    const sendEmail = () => {
+
+        if (name.length == 0 || email.length == 0) {
+            if (name.length == 0) {
+                setNameError(true)
+                setNameErrorText('Поле является обязательным.')
+            } else {
+                setNameError(false)
+                setNameErrorText('')
+            }
+            if (email.length == 0) {
+                setEmailError(true)
+                setEmailErrorText('Поле является обязательным.')
+            } else {
+                setEmailError(false)
+                setEmailErrorText('')
+            }
+        } else {
+            setEmailError(false)
+            setEmailErrorText('')
+            setNameError(false)
+            setNameErrorText('')
+            let formdata = new FormData();
+            formdata.append("name", name);
+            formdata.append("email", email);
+
+            let requestOptions = {
+                method: 'POST',
+                body: formdata,
+                redirect: 'follow'
+            };
+
+            fetch("https://bnmotors.justcode.am/api/send_email", requestOptions)
+                .then(response => response.json())
+                .then(result =>
+                    {
+                        console.log(result, 'send')
+                        if (result?.status === true) {
+                             setName('')
+                            setEmail('')
+                        } else if (result?.status === false) {
+                            if (result?.message?.email[0] === "The email field must be a valid email address.") {
+                                console.log(result.message, 'result?.message?.email[0]')
+
+                                setEmailError(true)
+                                setEmailErrorText('Неправильный адрес электронной почты')
+                            } else {
+                                setEmailError(false)
+                                setEmailErrorText('')
+                            }
+
+                        }
+
+
+
+
+                    }
+                )
+                .catch(error => console.log('error', error));
+        }
+
+    }
 
 
 
@@ -121,6 +191,9 @@ export default function Header(props) {
                                        }}
                                 />
                             </div>
+                            {name_error &&
+                                <p className='error_text'>{name_error_text}</p>
+                            }
                             <div className="footer_news_form_input_button_wrapper">
                                 <input type="text" placeholder='Электронная почта' name='email'
                                        className='footer_news_form_input_field2' value={email}
@@ -128,8 +201,11 @@ export default function Header(props) {
                                            setEmail(e.target.value)
                                        }}
                                 />
-                                <button className='subscribe_to_news_btn'>Подписаться на новости</button>
+                                <button className='subscribe_to_news_btn' type='button' onClick={() => {sendEmail()}}>Подписаться на новости</button>
                             </div>
+                            {email_error &&
+                                <p className='error_text'>{email_error_text}</p>
+                            }
                                 <label className='checkbox_label'>
                                     <input
                                         type='checkbox'

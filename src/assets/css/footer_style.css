@@ -424,3 +424,12 @@
         font-size: 14px!important;
     }
 }
+
+.error_text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: red;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

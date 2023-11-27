@@ -266,7 +266,7 @@
     border: 1px solid #dd2b1c;
     padding: 15px 15px 30px 15px;
     border-radius: 20px;
-    height: 600px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -310,6 +310,8 @@
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     padding-left: 15px;
+    max-height: 80px;
+    overflow: hidden;
 }
 
 .company_news_item_more_button {
@@ -491,7 +493,7 @@
     font-size: 28px;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     margin-bottom: 45px;
     width: 24%;
 }
@@ -856,7 +858,7 @@
         height: unset!important;
     }
     .company_news_item {
-        height: 500px!important;
+        min-height: 500px!important;
     }
 }
 
@@ -868,7 +870,7 @@
         height: 280px!important;
     }
     .company_news_item {
-        height: 550px!important;
+        min-height: 550px!important;
         width: 100% !important;
         margin-bottom: 20px;
     }
@@ -887,7 +889,7 @@
         height: unset!important;
     }
     .company_news_item {
-        height: 500px!important;
+        min-height: 500px!important;
         width: 100% !important;
         margin-bottom: 20px;
     }
@@ -1010,5 +1012,52 @@
     }
     .partners {
         height: 600px!important;
+    }
+}
+
+.show_news_single_page_popup {
+    /*display: none;*/
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    /*right: -1000px;*/
+    /*transition: 0.5s;*/
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background:  rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    padding-top: 50px;
+}
+
+.show_news_single_page_popup_wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 30px 50px 30px;
+    position: relative;
+}
+
+.news_slider_img_parent2 {
+    width: 100%;
+    height: 280px;
+}
+.news_slider_img_parent2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+@media (max-width: 600px) {
+    .show_news_single_page_popup_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
     }
 }

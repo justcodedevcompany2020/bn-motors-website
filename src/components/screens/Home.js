@@ -5,8 +5,6 @@ import React, { useState, useEffect } from 'react';
  import Footer from "./includes/Footer";
  import TopSlider from "./includes/Top_Slider";
  import NewsSlider1 from "./includes/News_Slider1";
- import NewsSlider2 from "./includes/News_Slider2";
- import NewsSlider3 from "./includes/News_Slider3";
  import plusIcon from '../../assets/svg/plus_icon.svg'
  import loadMoreIcon from '../../assets/svg/arrow_icon.svg'
  import dealerIcon1 from '../../assets/svg/dealer_icon1.svg'
@@ -22,6 +20,7 @@ import React, { useState, useEffect } from 'react';
      const [show_mpv_popup, setShowMpvPopup] = useState(false);
      const [show_bnm1_popup, setShowBnm1Popup] = useState(false);
      const [show_bnm2_popup, setShowBnm2Popup] = useState(false);
+     const [next_page_url, setNextPageUrl] = useState(null);
 
      const [news_list, setNewsList] = useState([
          {
@@ -46,38 +45,40 @@ import React, { useState, useEffect } from 'react';
              info: 'Краткое описание события',
          },
      ]);
-     const [show_news1_popup, setNews1Popup] = useState(false);
-     const [show_news2_popup, setNews2Popup] = useState(false);
-     const [show_news3_popup, setNews3Popup] = useState(false);
+     const [single_news_info, setSingleNewsInfo] = useState([]);
+
+
+
+     const [show_news_single_page, setShowNewsSinglePage] = useState(false);
+     const [img_path, setImgPath] = useState('https://bnmotors.justcode.am/uploads/');
 
      const loadMore = async () => {
-         await setNewsList((prevNewsList) => [
-             ...prevNewsList,
-             {
-                 id: 1,
-                 img: require('../../assets/images/news_img1.png'),
-                 date: '18.08.23',
-                 title: 'Открытие завода BNM',
-                 info: 'Краткое описание события',
-             },
-             {
-                 id: 2,
-                 img: require('../../assets/images/news_img2.png'),
-                 date: '25.08.23 ',
-                 title: 'Презентация BAW',
-                 info: 'Краткое описание события',
-             },
-             {
-                 id: 3,
-                 img: require('../../assets/images/news_img3.png'),
-                 date: '05.09.23',
-                 title: 'Комтранс 2023 | BAW',
-                 info: 'Краткое описание события',
-             },
-         ]);
+         console.log(next_page_url, 'next')
+         let requestOptions = {
+             method: 'GET',
+             redirect: 'follow',
+         };
+
+         try {
+             const response = await fetch(`${next_page_url}`, requestOptions);
+             const result = await response.json();
+
+             console.log(result, 'news more');
+
+             if (result?.status === true) {
+                 setNewsList((prevNewsList) => [
+                     ...prevNewsList,
+                     ...result?.data?.data, // Assuming result.data.data is an array of news items
+                 ]);
+
+                 setNextPageUrl(result?.data?.next_page_url);
+             }
+         } catch (error) {
+             console.log('error', error);
+         }
      };
 
-     const [partners_list, setPartnersList] = useState([
+     const [countries_list, setCountriesList] = useState([
          {
              id: 1,
              name: 'РЯЗАНЬ',
@@ -164,6 +165,13 @@ import React, { useState, useEffect } from 'react';
 
      ]);
 
+     useEffect(() => {
+         getCountries();
+     }, [])
+     useEffect(() => {
+         getNews();
+     }, [])
+
      const disableBodyScroll = () => {
          document.body.style.overflow = "hidden";
      };
@@ -184,7 +192,97 @@ import React, { useState, useEffect } from 'react';
          setShowBnm2Popup(true)
          disableBodyScroll()
      }
-         return (
+     const getCountries = () => {
+
+         let requestOptions = {
+             method: 'GET',
+             redirect: 'follow'
+         };
+
+         fetch("https://bnmotors.justcode.am/api/get_country", requestOptions)
+             .then(response => response.json())
+             .then(result =>
+                 {
+                     if (result?.status === true) {
+                          setCountriesList(result?.data)
+                     }
+                     console.log(result, 'country')
+
+                 }
+
+             )
+             .catch(error => console.log('error', error));
+     }
+     const getNews = () => {
+
+         let requestOptions = {
+             method: 'GET',
+             redirect: 'follow'
+         };
+
+         fetch("https://bnmotors.justcode.am/api/news?page=1", requestOptions)
+             .then(response => response.json())
+             .then(result =>
+                 {
+                     console.log(result, 'news')
+
+                     if (result?.status === true) {
+                         setNewsList(result?.data?.data)
+                         setNextPageUrl(result?.data?.next_page_url)
+                     }
+
+                 }
+             )
+             .catch(error => console.log('error', error));
+     }
+     const getDate = (date) => {
+         console.log(date, 'dataaaaaaaa');
+         const moscowTimeZone = 'Europe/Moscow';
+
+         // let timestamp = date;
+         // timestamp = timestamp.substring(0, 10);
+         date = new Date(date);
+
+
+         // Use toLocaleDateString to format the date in Moscow time zone
+         const options = {
+             timeZone: moscowTimeZone,
+             day: 'numeric',
+             month: 'numeric',
+             year: 'numeric',
+         };
+
+         const moscowDate = date.toLocaleDateString('ru-RU', options);
+
+         console.log('Moscow Date:', moscowDate);
+         return moscowDate;
+     }
+
+     const showNewsSinglePage = (id) => {
+         console.log(id, 'news id')
+
+         let requestOptions = {
+             method: 'GET',
+             redirect: 'follow'
+         };
+
+         fetch(`https://bnmotors.justcode.am/api/single_news/news_id=${id}`, requestOptions)
+             .then(response => response.json())
+             .then(result =>
+                 {
+                     if (result?.status === true) {
+                            setSingleNewsInfo(result?.data)
+                            setShowNewsSinglePage(true)
+                             disableBodyScroll()
+                     }
+                     console.log(result, 'single news')
+                 }
+
+             )
+             .catch(error => console.log('error', error));
+     }
+
+     return (
          <>
 
 
@@ -474,25 +572,28 @@ import React, { useState, useEffect } from 'react';
                         <div className="company_news_wrapper">
                             <h1 className='company_news_title'>Новости компании</h1>
                             <div className="company_news_items_wrapper">
-                                {news_list.map((item, index) => {
+                                {news_list?.map((item, index) => {
                                     return (
                                         <div className="company_news_item" key={index}>
                                             <div className='company_news_item_img_info_box'>
-                                                <div className="company_news_item_img">
-                                                    <img src={item.img} alt=""/>
-                                                </div>
+                                                {item?.photo?.length > 0 &&
+                                                    <div className="company_news_item_img">
+                                                        <img src={img_path + item?.photo[0]?.photo} alt=""/>
+                                                    </div>
+                                                }
+
                                                 <p className="company_news_item_date_info">
-                                                    {item.date}
+                                                    {getDate(item?.created_at)}
                                                 </p>
                                                 <p className="company_news_item_title">
-                                                    {item.title}
+                                                    {item?.title}
                                                 </p>
                                                 <p className="company_news_item_info">
-                                                    {item.info}
+                                                    {item?.description}
                                                 </p>
                                             </div>
 
-                                            <button className='company_news_item_more_button'>
+                                            <button className='company_news_item_more_button' onClick={() => {showNewsSinglePage(item?.id)}}>
                                                 <span className='company_news_item_more_button_text'>Подробнее</span>
                                                 <img src={plusIcon} alt=""/>
                                             </button>
@@ -571,7 +672,7 @@ import React, { useState, useEffect } from 'react';
                                 BNM ИЩЕТ ПАРТНЁРОВ В СЛЕДУЮЩИХ ГОРОДАХ:
                             </h1>
                             <div className="partners_list_items_wrapper">
-                                {partners_list.map((item, index) => {
+                                {countries_list?.map((item, index) => {
                                     return (
                                         <p className='partners_list_item' key={index}>{item.name}</p>
                                     )
@@ -646,51 +747,32 @@ import React, { useState, useEffect } from 'react';
                  </div>
                  }
 
-                 {show_news1_popup &&
-                    <div className='show_mpv_popup'>
-                     <div className='show_mpv_popup_wrapper'>
-                         <button className='show_mpv_popup_close_btn'
-                                 onClick={() => {
-                                     setNews1Popup(false)
-                                     enableBodyScroll()
-                                 }}
-                         >
-                             <img src={closeIcon} alt=""/>
-                         </button>
-                        <NewsSlider1/>
-                     </div>
-                 </div>
+                 {show_news_single_page &&
+                    <div className='show_news_single_page_popup'>
+                        <div className='show_news_single_page_popup_wrapper'>
+                            <button className='show_mpv_popup_close_btn'
+                                    onClick={() => {
+                                        setShowNewsSinglePage(false)
+                                        enableBodyScroll()
+                                    }}
+                            >
+                                <img src={closeIcon} alt=""/>
+                            </button>
+                                <NewsSlider1 photo={single_news_info?.photo}/>
+                            <p className="company_news_item_date_info">
+                                {getDate(single_news_info?.created_at)}
+                            </p>
+                            <p className="company_news_item_title">
+                                {single_news_info?.title}
+                            </p>
+                            <p className="company_news_item_info">
+                                {single_news_info?.description}
+                            </p>
+                        </div>
+                    </div>
                  }
-                 {show_news2_popup &&
-                 <div className='show_mpv_popup'>
-                     <div className='show_mpv_popup_wrapper'>
-                         <button className='show_mpv_popup_close_btn'
-                                 onClick={() => {
-                                     setNews2Popup(false)
-                                     enableBodyScroll()
-                                 }}
-                         >
-                             <img src={closeIcon} alt=""/>
-                         </button>
-                         <NewsSlider2/>
-                     </div>
-                 </div>
-                 }
-                 {show_news3_popup &&
-                 <div className='show_mpv_popup'>
-                     <div className='show_mpv_popup_wrapper'>
-                         <button className='show_mpv_popup_close_btn'
-                                 onClick={() => {
-                                     setNews3Popup(false)
-                                     enableBodyScroll()
-                                 }}
-                         >
-                             <img src={closeIcon} alt=""/>
-                         </button>
-                         <NewsSlider3/>
-                     </div>
-                 </div>
-                 }
+
+
              </div>
 
          </>

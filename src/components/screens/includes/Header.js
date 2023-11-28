@@ -101,9 +101,9 @@ export default function Header(props) {
                                             enableBodyScroll()
                                         }}
                                 >
-                                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M24.2988 24.1992L11.0995 10.9999" stroke="#528DFF" strokeWidth="1.5" strokeLinecap="round"/>
-                                        <path d="M24.1992 11L10.9999 24.1993" stroke="#528DFF" strokeWidth="1.5" strokeLinecap="round"/>
+                                    <svg width="45" height="45" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.2988 24.1992L11.0995 10.9999" stroke="#dd2b1c" strokeWidth="1.5" strokeLinecap="round"/>
+                                        <path d="M24.1992 11L10.9999 24.1993" stroke="#dd2b1c" strokeWidth="1.5" strokeLinecap="round"/>
                                     </svg>
                                 </button>
                                 <div className='mobile_headers_navigation_links_mail_address_info_wrapper'>

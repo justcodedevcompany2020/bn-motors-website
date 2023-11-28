@@ -28,7 +28,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img1.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img1.webp')} alt=""/>
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img2.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img2.webp')} alt=""/>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img3.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img3.webp')} alt=""/>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img4.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img4.webp')} alt=""/>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img5.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img5.webp')} alt=""/>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@ export default function App() {
                 <SwiperSlide>
                     <div className="top_slider_item">
                         <div className="top_slider_img_parent">
-                            <img src={require('../../../assets/images/slider_img6.jpg')} alt=""/>
+                            <img src={require('../../../assets/images/slider_img6.webp')} alt=""/>
                         </div>
                     </div>
 

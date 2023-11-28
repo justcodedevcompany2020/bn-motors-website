@@ -111,56 +111,56 @@ import React, { useState, useEffect } from 'react';
      const [mpv_list, setMpvList] = useState([
          {
              id: 1,
-             img: require('../../assets/images/mpv_img1.jpg')
+             img: require('../../assets/images/mpv_img1.webp')
          },
          {
              id: 2,
-             img: require('../../assets/images/mpv_img2.jpg')
+             img: require('../../assets/images/mpv_img2.webp')
          },
      ]);
      const [bnm_list1, setMpvList1] = useState([
          {
              id: 1,
-             img: require('../../assets/images/bnm_one_img1.jpg')
+             img: require('../../assets/images/bnm_one_img1.webp')
          },
          {
              id: 2,
-             img: require('../../assets/images/bnm_one_img2.jpg')
+             img: require('../../assets/images/bnm_one_img2.webp')
          },
          {
              id: 3,
-             img: require('../../assets/images/bnm_one_img3.jpg')
+             img: require('../../assets/images/bnm_one_img3.webp')
          },
          {
              id: 4,
-             img: require('../../assets/images/bnm_one_img4.jpg')
+             img: require('../../assets/images/bnm_one_img4.webp')
          },
          {
              id: 5,
-             img: require('../../assets/images/bnm_one_img5.jpg')
+             img: require('../../assets/images/bnm_one_img5.webp')
          },
 
      ]);
      const [bnm_list2, setMpvList2] = useState([
          {
              id: 1,
-             img: require('../../assets/images/bnm_second_img1.jpg')
+             img: require('../../assets/images/bnm_second_img1.webp')
          },
          {
              id: 2,
-             img: require('../../assets/images/bnm_second_img2.jpg')
+             img: require('../../assets/images/bnm_second_img2.webp')
          },
          {
              id: 3,
-             img: require('../../assets/images/bnm_second_img3.jpg')
+             img: require('../../assets/images/bnm_second_img3.webp')
          },
          {
              id: 4,
-             img: require('../../assets/images/bnm_second_img4.jpg')
+             img: require('../../assets/images/bnm_second_img4.webp')
          },
          {
              id: 5,
-             img: require('../../assets/images/bnm_second_img5.jpg')
+             img: require('../../assets/images/bnm_second_img5.webp')
          },
 
      ]);
@@ -292,7 +292,7 @@ import React, { useState, useEffect } from 'react';
                     <section className='top'>
                         <div className="top_wrapper">
                             <div className="top_img">
-                                <img src={require('../../assets/images/top_img.jpg')} alt=""/>
+                                <img src={require('../../assets/images/top_img.webp')} alt=""/>
                             </div>
                         </div>
                     </section>
@@ -335,7 +335,7 @@ import React, { useState, useEffect } from 'react';
                                     </p>
                                 </div>
                                 <div className="company_history_img_item">
-                                    <img src={require('../../assets/images/history_img.png')} alt=""/>
+                                    <img src={require('../../assets/images/history_img.webp')} alt=""/>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@ import React, { useState, useEffect } from 'react';
                                     </div>
 
                                     <div className="cars_models_item_img">
-                                        <img src={require('../../assets/images/car_model_img1.png')} className='cars_models_item_img_child' alt=""/>
+                                        <img src={require('../../assets/images/car_model_img1.webp')} className='cars_models_item_img_child' alt=""/>
                                         <button className='more_details_button' onClick={() => showBnm1Popup()}>
                                             <span className='more_details_button_text'>Подробнее</span>
                                             <img src={plusIcon} alt=""/>
@@ -370,7 +370,7 @@ import React, { useState, useEffect } from 'react';
                                     </div>
 
                                     <div className="cars_models_item_img">
-                                        <img src={require('../../assets/images/car_model_img2.png')} className='cars_models_item_img_child' alt=""/>
+                                        <img src={require('../../assets/images/car_model_img2.webp')} className='cars_models_item_img_child' alt=""/>
                                         <button className='more_details_button' onClick={() => showBnm2Popup()}>
                                             <span className='more_details_button_text'>Подробнее</span>
                                             <img src={plusIcon} alt=""/>
@@ -387,7 +387,7 @@ import React, { useState, useEffect } from 'react';
                                     </div>
 
                                     <div className="cars_models_item_img">
-                                        <img src={require('../../assets/images/car_model_img3.png')}  className='cars_models_item_img_child' alt=""/>
+                                        <img src={require('../../assets/images/car_model_img3.webp')}  className='cars_models_item_img_child' alt=""/>
                                         <button className='more_details_button' onClick={() => showMpvPopup()}>
                                             <span className='more_details_button_text'>Подробнее</span>
                                             <img src={plusIcon} alt=""/>
@@ -400,10 +400,10 @@ import React, { useState, useEffect } from 'react';
                     <section className="car_models_details">
                         <div className="car_models_details_wrapper">
                             <div className="car_models_details_img">
-                                <img src={require('../../assets/images/model_img.jpg')} alt=""/>
+                                <img src={require('../../assets/images/model_img.webp')} alt=""/>
                             </div>
                             <div className="car_models_details_img">
-                                <img src={require('../../assets/images/model_img2.jpg')} alt=""/>
+                                <img src={require('../../assets/images/model_img2.webp')} alt=""/>
                             </div>
                         </div>
                     </section>
@@ -612,7 +612,7 @@ import React, { useState, useEffect } from 'react';
                     <section className="how_to_become_dealer">
                         <div className="how_to_become_dealer_wrapper">
                             <div className='how_to_become_dealer_img'>
-                                <img src={require('../../assets/images/dealer_img.jpg')} alt=""/>
+                                <img src={require('../../assets/images/dealer_img.webp')} alt=""/>
                                 <p className='how_to_become_dealer_img-title'>Стать дилером BNM в России</p>
                             </div>
                             <div className='how_to_become_dealer_info_wrapper'>
@@ -771,7 +771,6 @@ import React, { useState, useEffect } from 'react';
                         </div>
                     </div>
                  }
-
 
              </div>
 

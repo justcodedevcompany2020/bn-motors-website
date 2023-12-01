@@ -8,6 +8,7 @@ import telegramIcon from  "../../../assets/svg/telegram.svg";
 import youtubeIcon from  "../../../assets/svg/youtube.svg";
 import zenIcon from  "../../../assets/svg/zen.svg";
 import odnaklasnikiIcon from  "../../../assets/svg/odnoklasniki.svg";
+import { Link as LinkScroll } from 'react-scroll';
 
 
 export default function Header(props) {
@@ -146,11 +147,23 @@ export default function Header(props) {
                         </a>
                         <div className='footer_navigation_links_mail_address_info_wrapper'>
                             <div className='footer_navigation_links_wrapper'>
-                                <a href="" className="footer_navigation_link">O нас</a>
-                                <a href="" className="footer_navigation_link">Модельный ряд</a>
-                                <a href="" className="footer_navigation_link">Стать дилером</a>
-                                <a href="" className="footer_navigation_link">Новости</a>
+                                <LinkScroll to="about_us" smooth={true} className='footer_navigation_link'>
+                                    O нас
+                                </LinkScroll>
+                                <LinkScroll to="models" smooth={true} className='footer_navigation_link'>
+                                    Модельный ряд
+                                </LinkScroll>
+                                <LinkScroll to="become_dealer" smooth={true} className='footer_navigation_link'>
+                                    Стать дилером
+                                </LinkScroll>
+                                <LinkScroll to="news" smooth={true} className='footer_navigation_link'>
+                                    Новости
+                                </LinkScroll>
+
                             </div>
+                        </div>
+                        <div className="footer_img">
+                            <img src={require('../../../assets/images/top_img2.webp')} alt=""/>
                         </div>
 
                     </div>
@@ -219,18 +232,6 @@ export default function Header(props) {
                                     <p className='checkbox_label_info'>Согласен на получение новостной/маркетинговой рассылки по email</p>
                                 </label>
 
-                            <label className='checkbox_label2'>
-                                <input
-                                    type='checkbox'
-                                    value={select_check2}
-                                    checked={select_check2}
-                                    onChange={handleOptionChange2}
-                                />
-
-
-                                <span className='checkmark2'></span>
-                                <p className='checkbox_label_info'>Согласен на получение новостной/маркетинговой рассылки по email</p>
-                            </label>
 
                         </form>
                     </div>

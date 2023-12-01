@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../../assets/css/header_style.css';
 import {Link} from "react-router-dom";
+import { Link as LinkScroll } from 'react-scroll';
 import mailIcon from  "../../../assets/svg/mail_icon.svg";
 import addressIcon from  "../../../assets/svg/address_icon.svg";
 import hamburgerIcon from  "../../../assets/svg/hamburger_icon.svg";
@@ -65,10 +66,18 @@ export default function Header(props) {
                     </button>
                     <div className='headers_navigation_links_mail_address_info_wrapper'>
                         <div className='headers_navigation_links_wrapper'>
-                            <a href="" className="headers_navigation_link">O нас</a>
-                            <a href="" className="headers_navigation_link">Модельный ряд</a>
-                            <a href="" className="headers_navigation_link">Стать дилером</a>
-                            <a href="" className="headers_navigation_link">Новости</a>
+                            <LinkScroll to="about_us" smooth={true} className='headers_navigation_link'>
+                                O нас
+                            </LinkScroll>
+                            <LinkScroll to="models" smooth={true} className='headers_navigation_link'>
+                                Модельный ряд
+                            </LinkScroll>
+                            <LinkScroll to="become_dealer" smooth={true} className='headers_navigation_link'>
+                                Стать дилером
+                            </LinkScroll>
+                            <LinkScroll to="news" smooth={true} className='headers_navigation_link'>
+                                Новости
+                            </LinkScroll>
                         </div>
                         <div className='headers_mail_address_info_item_wrapper'>
                             <div className='headers_mail_address_info_item'>
@@ -77,7 +86,6 @@ export default function Header(props) {
                                 </div>
                                 <div className='header_mail_links_wrapper'>
                                     <a href="mailto:info@bnm.com" className="header_mail_link">info@bnm.com</a>
-                                    <a href="mailto:info@bnmzavod.com" className="header_mail_link">info@bnmzavod.com</a>
                                 </div>
                             </div>
                             <div className='headers_mail_address_info_item'>

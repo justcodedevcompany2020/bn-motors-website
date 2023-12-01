@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
  import dealerIcon1 from '../../assets/svg/dealer_icon1.svg'
  import dealerIcon2 from '../../assets/svg/dealer_icon2.svg'
  import dealerIcon3 from '../../assets/svg/dealer_icon3.svg'
+ import dealerIcon4 from '../../assets/svg/dealer_icon4.svg'
  import closeIcon from '../../assets/svg/close_icon.svg'
 
 
@@ -21,6 +22,7 @@ import React, { useState, useEffect } from 'react';
      const [show_bnm1_popup, setShowBnm1Popup] = useState(false);
      const [show_bnm2_popup, setShowBnm2Popup] = useState(false);
      const [next_page_url, setNextPageUrl] = useState(null);
+     const [file_name, setFileName] = useState('');
 
      const [news_list, setNewsList] = useState([
          {
@@ -282,6 +284,53 @@ import React, { useState, useEffect } from 'react';
              .catch(error => console.log('error', error));
      }
 
+     useEffect(() => {
+         getFile()
+     }, [])
+
+     const getFile = () => {
+         let requestOptions = {
+             method: 'GET',
+             redirect: 'follow'
+         };
+
+         fetch("https://bnmotors.justcode.am/api/get_file", requestOptions)
+             .then(response => response.json())
+             .then(result =>
+                 {
+                     console.log(result?.data, 'result?.data?.file')
+                     setFileName('https://bnmotors.justcode.am/uploads/' + result?.data?.file)
+                 }
+
+             )
+             .catch(error => console.log('error', error));
+     }
+
+     const uploadFile = () => {
+         console.log('https://bnmotors.justcode.am/uploads/', + file_name, 'nnnfnnfnf')
+
+         fetch('https://bnmotors.justcode.am/uploads/' + file_name, {
+             method: 'GET',
+             headers: {
+                 'Content-Type': 'application/pdf',
+             },
+         })
+             .then(response => response.blob())
+             .then(blob => {
+                 const url = window.URL.createObjectURL(new Blob([blob]));
+
+                 const link = document.createElement('a');
+                 link.href = url;
+                 link.download = file_name;
+
+                 document.body.appendChild(link);
+
+                 link.click();
+
+                 link.parentNode.removeChild(link);
+             });
+     }
+
      return (
          <>
 
@@ -292,11 +341,11 @@ import React, { useState, useEffect } from 'react';
                     <section className='top'>
                         <div className="top_wrapper">
                             <div className="top_img">
-                                <img src={require('../../assets/images/top_img.webp')} alt=""/>
+                                <img src={require('../../assets/images/top_img2.webp')} alt=""/>
                             </div>
                         </div>
                     </section>
-                    <section className="company_history">
+                    <section className="company_history" id='about_us'>
                         <div className="company_history_wrapper">
                             <h1 className="company_history_title">История компании</h1>
                             <div className="company_history_items_wrapper">
@@ -340,9 +389,9 @@ import React, { useState, useEffect } from 'react';
                             </div>
                         </div>
                     </section>
-                    <section className="cars_models">
+                    <section className="cars_models" id='models'>
                         <div className="cars_models_wrapper">
-                            <h1 className='cars_models_title'>Модельный ряд</h1>
+                            <h1 className='cars_models_title' >Модельный ряд</h1>
                             <div className="cars_models_items_wrapper">
                                 <div className="cars_models_item">
                                     <div className="cars_models_item_info_box">
@@ -379,10 +428,9 @@ import React, { useState, useEffect } from 'react';
                                 </div>
                                 <div className="cars_models_item">
                                     <div className="cars_models_item_info_box">
-                                        <p className="cars_models_item_title">MPV</p>
+                                        <p className="cars_models_item_title">BNM III</p>
                                         <p className="cars_models_item_info">
-                                            Автомобиль для бизнеса с комфортом
-                                            автомобиля бизнес-класса.
+                                            Стильный и комфортный автомобиль для любых целей!
                                         </p>
                                     </div>
 
@@ -397,178 +445,178 @@ import React, { useState, useEffect } from 'react';
                             </div>
                         </div>
                     </section>
-                    <section className="car_models_details">
-                        <div className="car_models_details_wrapper">
-                            <div className="car_models_details_img">
-                                <img src={require('../../assets/images/model_img.webp')} alt=""/>
-                            </div>
-                            <div className="car_models_details_img">
-                                <img src={require('../../assets/images/model_img2.webp')} alt=""/>
-                            </div>
-                        </div>
-                    </section>
-                    <section className="top_slider">
-                        <div className="top_slider_wrapper">
-                            <div className='top_slider_box'>
-                                <TopSlider/>
-                            </div>
-                            <div className="top_slider_info_item">
-                                {/*<div className="top_slider_info_item_line"></div>*/}
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Конструкция корпуса</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">Кузов на раме</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Габаритные размеры (мм)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">5585/5985×1880×2050</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Размер грузового отсека (мм)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">
-                                            3300×1780×360
-                                            3700×1780×360
-                                            3000×1780×360
-                                        </p>
-                                    </div>
+                    {/*<section className="car_models_details">*/}
+                    {/*    <div className="car_models_details_wrapper">*/}
+                    {/*        <div className="car_models_details_img">*/}
+                    {/*            <img src={require('../../assets/images/model_img.webp')} alt=""/>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="car_models_details_img">*/}
+                    {/*            <img src={require('../../assets/images/model_img2.webp')} alt=""/>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</section>*/}
+                    {/*<section className="top_slider">*/}
+                    {/*    <div className="top_slider_wrapper">*/}
+                    {/*        <div className='top_slider_box'>*/}
+                    {/*            <TopSlider/>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="top_slider_info_item">*/}
+                    {/*            /!*<div className="top_slider_info_item_line"></div>*!/*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Конструкция корпуса</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">Кузов на раме</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Габаритные размеры (мм)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">5585/5985×1880×2050</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Размер грузового отсека (мм)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">*/}
+                    {/*                        3300×1780×360*/}
+                    {/*                        3700×1780×360*/}
+                    {/*                        3000×1780×360*/}
+                    {/*                    </p>*/}
+                    {/*                </div>*/}
 
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Колесная база (мм)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">3400/3600</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Места</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">2/5</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Дорожный просвет (мм)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">170</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Снаряженная масса (кг)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">1595/1740</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Грузоподъемность (кг)</p>
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Колесная база (мм)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">3400/3600</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Места</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">2/5</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Дорожный просвет (мм)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">170</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Снаряженная масса (кг)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">1595/1740</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Грузоподъемность (кг)</p>*/}
 
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">2000/2500</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Шины</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">185R14LT×7</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Подвеска передняя</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">Листовая рессора</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Задняя подвеска</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">Листовая рессора</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Рабочий объем (мл)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">1590/1962</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Максимальная мощность (кВт)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">91/106</p>
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">2000/2500</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Шины</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">185R14LT×7</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Подвеска передняя</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">Листовая рессора</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Задняя подвеска</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">Листовая рессора</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Рабочий объем (мл)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">1590/1962</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Максимальная мощность (кВт)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">91/106</p>*/}
 
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Максимальный крутящий момент (Н м)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">161/200</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Максимальная скорость (км/ч)</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">105</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Тип привода</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">Задний привод</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Тип тормоза</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">Дисковый/барабанный</p>
-                                    </div>
-                                </div>
-                                <div className="top_slider_info_item_child">
-                                    <div className='top_slider_info_item_child_title_parent'>
-                                        <p className="top_slider_info_item_child_title">Коробка передач</p>
-                                    </div>
-                                    <div className='top_slider_info_item_child_detail_parent'>
-                                        <p className="top_slider_info_item_child_detail">5MT</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section className="company_news">
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Максимальный крутящий момент (Н м)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">161/200</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Максимальная скорость (км/ч)</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">105</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Тип привода</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">Задний привод</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Тип тормоза</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">Дисковый/барабанный</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="top_slider_info_item_child">*/}
+                    {/*                <div className='top_slider_info_item_child_title_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_title">Коробка передач</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div className='top_slider_info_item_child_detail_parent'>*/}
+                    {/*                    <p className="top_slider_info_item_child_detail">5MT</p>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</section>*/}
+                    <section className="company_news" id='news'>
                         <div className="company_news_wrapper">
                             <h1 className='company_news_title'>Новости компании</h1>
                             <div className="company_news_items_wrapper">
@@ -609,7 +657,7 @@ import React, { useState, useEffect } from 'react';
                             </button>
                         </div>
                     </section>
-                    <section className="how_to_become_dealer">
+                    <section className="how_to_become_dealer" id='become_dealer'>
                         <div className="how_to_become_dealer_wrapper">
                             <div className='how_to_become_dealer_img'>
                                 <img src={require('../../assets/images/dealer_img.webp')} alt=""/>
@@ -631,6 +679,16 @@ import React, { useState, useEffect } from 'react';
                                             Скачайте форму презентации заявителя,
                                             и заполните необходимые данные.
                                         </p>
+                                        {/*<button className='download_btn' onClick={() => uploadFile()}>*/}
+                                        {/*    Скачать*/}
+                                        {/*    <img src={dealerIcon4} alt=""/>*/}
+
+                                        {/*</button>*/}
+                                        <a href={file_name} className='download_btn' target='_blank'>
+                                            Скачать
+                                            <img src={dealerIcon4} alt=""/>
+
+                                        </a>
                                     </div>
                                     <div className="how_to_become_dealer_item">
                                         <div className="how_to_become_dealer_item_icon">
